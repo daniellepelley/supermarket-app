@@ -2,15 +2,15 @@ import { IState } from "../types/IState";
 import init from "./generator";
 import { AnyAction } from "redux";
 import Action from "../actions";
-import { IBasketItem } from "../types/IBasketItem";
+import { IBasketProduct } from "../types/IBasketProduct";
 import { IDiscount } from "../types/IDiscount";
 import { IAppliedDiscount } from "../types/IAppliedDiscount";
 
 const addItem = (
   productCode: string,
   quantity: number,
-  items: IBasketItem[]
-): IBasketItem[] => {
+  items: IBasketProduct[]
+): IBasketProduct[] => {
   const existingItem = items.filter(
     (item) => item.productCode === productCode
   )[0];
@@ -35,8 +35,8 @@ const addItem = (
 const removeItem = (
   productCode: string,
   quantity: number,
-  items: IBasketItem[]
-): IBasketItem[] => {
+  items: IBasketProduct[]
+): IBasketProduct[] => {
   const existingItem = items.filter(
     (item) => item.productCode === productCode
   )[0];
@@ -56,7 +56,7 @@ const removeItem = (
   return [...items];
 };
 
-const calculateDiscounts = (items: IBasketItem[], discounts: IDiscount[]) : IAppliedDiscount[] => {
+const calculateDiscounts = (items: IBasketProduct[], discounts: IDiscount[]) : IAppliedDiscount[] => {
     return discounts.map(discount => {
         const products = items.filter(item => item.productCode === discount.productCode)[0];
 
@@ -78,7 +78,7 @@ const calculateDiscounts = (items: IBasketItem[], discounts: IDiscount[]) : IApp
     .filter(x => x) as IAppliedDiscount[]
 }
 
-const modifyItems = (state: IState, items: IBasketItem[]) => {
+const modifyItems = (state: IState, items: IBasketProduct[]) => {
       return {
         ...state,
         basket: {
@@ -88,7 +88,7 @@ const modifyItems = (state: IState, items: IBasketItem[]) => {
       };
 }
 
-export default (state: IState = init(), anyAction: AnyAction): IState => {
+const reducer = (state: IState = init(), anyAction: AnyAction): IState => {
   const action = anyAction as Action;
 
   switch (action.type) {
@@ -108,3 +108,5 @@ export default (state: IState = init(), anyAction: AnyAction): IState => {
       return state;
   }
 };
+
+export default reducer;

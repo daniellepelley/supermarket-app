@@ -1,14 +1,18 @@
-import * as React from "react";
 import { connect } from "react-redux";
+import { addProduct, removeProduct } from "../../store/actionCreators";
 import { IState } from "../../store/types/IState";
 import ShoppingCart from "./ShoppingCart";
 
 const mapStateToProps = (state: IState, ownProps: any) => ({
-  message: state.message,
+  basket: state.basket,
+  discounts: state.discounts,
+  products: state.products,
 });
  
 const mapDispatchToProps = (dispatch: any) => {
   return {
+    onAddProduct: (productCode: string) => dispatch(addProduct(productCode, 1)),
+    onRemoveProduct: (productCode: string) => dispatch(removeProduct(productCode, 1))
   }
 };
 

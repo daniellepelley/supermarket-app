@@ -2,20 +2,19 @@ import { IState } from "../types/IState";
 import staticNames from "../staticNames";
 
 const create = (): IState => ({
-  message: "Hello World",
   products: [
     {
-      type: staticNames.FACE_MASK,
+      code: staticNames.FACE_MASK,
       title: "Face Mask",
       price: 2.5,
     },
     {
-      type: staticNames.TOILET_ROLL,
+      code: staticNames.TOILET_ROLL,
       title: "Toilet Roll",
       price: 0.65,
     },
     {
-      type: staticNames.HAND_SANITIZER,
+      code: staticNames.HAND_SANITIZER,
       title: "Hand Sanitizer",
       price: 19.99,
       unitTitle: "l",

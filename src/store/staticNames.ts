@@ -1,9 +1,7 @@
-const FACE_MASK = "FACE_MASK";
-const TOILET_ROLL = "TOILET_ROLL";
-const HAND_SANITIZER = "HAND_SANITIZER";
-
-export default {
-  FACE_MASK,
-  TOILET_ROLL,
-  HAND_SANITIZER,
+const staticNames = {
+  FACE_MASK: "FACE_MASK",
+  TOILET_ROLL: "TOILET_ROLL",
+  HAND_SANITIZER: "HAND_SANITIZER",
 };
+
+export default staticNames;
