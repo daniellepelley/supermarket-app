@@ -1,7 +1,9 @@
 import { IState } from "../types/IState";
-import reducer from ".";
-import init from "./generator";
+import reducer from "../reducer";
+import init from "../reducer/generator";
 import { removeProduct } from "../actionCreators";
+import staticNames from "../staticNames";
+import { applyActions } from "./storeTestHelpers";
 
 test("remove a product from basket when there is 1 of that product", () => {
   const state: IState = {
@@ -9,14 +11,15 @@ test("remove a product from basket when there is 1 of that product", () => {
     basket: {
       items: [
         {
-          productCode: "FOO",
+          productCode: staticNames.FACE_MASK,
           quantity: 1,
         },
       ],
+      discounts: [],
     },
   };
 
-  const action = removeProduct("FOO", 1);
+  const action = removeProduct(staticNames.FACE_MASK, 1);
 
   const newState = reducer(state, action);
 
@@ -29,19 +32,20 @@ test("remove a product from basket when there are 2 of the same product", () => 
     basket: {
       items: [
         {
-          productCode: "FOO",
+          productCode: staticNames.FACE_MASK,
           quantity: 2,
         },
       ],
+      discounts: [],
     },
   };
 
-  const action = removeProduct("FOO", 1);
+  const action = removeProduct(staticNames.FACE_MASK, 1);
 
   const newState = reducer(state, action);
 
   expect(newState.basket.items.length).toEqual(1);
-  expect(newState.basket.items[0].productCode).toEqual("FOO");
+  expect(newState.basket.items[0].productCode).toEqual(staticNames.FACE_MASK);
   expect(newState.basket.items[0].quantity).toEqual(1);
 });
 
@@ -51,24 +55,24 @@ test("remove a product from basket when there are several products", () => {
     basket: {
       items: [
         {
-          productCode: "FOO",
+          productCode: staticNames.FACE_MASK,
           quantity: 2,
         },
         {
-          productCode: "BAR",
+          productCode: staticNames.TOILET_ROLL,
           quantity: 1,
         },
       ],
+      discounts: [],
     },
   };
 
-  const action1 = removeProduct("FOO", 1);
-  const action2 = removeProduct("BAR", 1);
-
-  const state2 = reducer(state, action1);
-  const newState = reducer(state2, action2);
+  const newState = applyActions(state, [
+    removeProduct(staticNames.FACE_MASK, 1),
+    removeProduct(staticNames.TOILET_ROLL, 1),
+  ]);
 
   expect(newState.basket.items.length).toEqual(1);
-  expect(newState.basket.items[0].productCode).toEqual("FOO");
+  expect(newState.basket.items[0].productCode).toEqual(staticNames.FACE_MASK);
   expect(newState.basket.items[0].quantity).toEqual(1);
 });
