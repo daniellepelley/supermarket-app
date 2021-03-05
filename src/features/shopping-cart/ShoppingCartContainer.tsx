@@ -5,7 +5,6 @@ import ShoppingCart from "./ShoppingCart";
 
 const mapStateToProps = (state: IState, ownProps: any) => ({
   basket: state.basket,
-  discounts: state.discounts,
   products: state.products,
 });
  

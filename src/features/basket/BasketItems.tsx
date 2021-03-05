@@ -2,7 +2,7 @@ import * as React from "react";
 import { IBasketProduct } from "../../store/types/IBasketProduct";
 import { IProduct } from "../../store/types/IProduct";
 import BasketItem from "../basket/BasketItem";
-import {map} from "./basketItemsMapper";
+import { mapBasketItems } from "./basketItemsMapper";
 
 type IBasketItemsProps = {
   products: IProduct[],
@@ -13,7 +13,7 @@ type IBasketItemsProps = {
 const BasketItems = (props: IBasketItemsProps) => {
   const { products, basketProducts, onRemoveProduct } = props;
 
-  const items = map(basketProducts, products);
+  const items = mapBasketItems(basketProducts, products);
 
   return <div>
     {items.map(item =>
