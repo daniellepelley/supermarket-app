@@ -78,37 +78,32 @@ const calculateDiscounts = (items: IBasketItem[], discounts: IDiscount[]) : IApp
     .filter(x => x) as IAppliedDiscount[]
 }
 
+const modifyItems = (state: IState, items: IBasketItem[]) => {
+      return {
+        ...state,
+        basket: {
+          items,
+          discounts: calculateDiscounts(items, state.discounts),
+        },
+      };
+}
+
 export default (state: IState = init(), anyAction: AnyAction): IState => {
   const action = anyAction as Action;
 
   switch (action.type) {
     case "ADD_PRODUCT":
-      const items1 = addItem(
+      return modifyItems(state, addItem(
         action.productCode,
         action.quantity,
         state.basket.items
-      );
-
-      return {
-        ...state,
-        basket: {
-          items: items1,
-          discounts: calculateDiscounts(items1, state.discounts),
-        },
-      };
+      ));
     case "REMOVE_PRODUCT":
-        const items2 = removeItem(
+        return modifyItems(state, removeItem(
             action.productCode,
             action.quantity,
             state.basket.items
-          );
-      return {
-        ...state,
-        basket: {
-          items: items2,
-          discounts: [],
-        },
-      };
+          ));
     default:
       return state;
   }
