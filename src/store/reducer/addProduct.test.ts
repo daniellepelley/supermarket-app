@@ -1,5 +1,5 @@
 import { IState } from '../types/IState';
-import reducer from './';
+import reducer from '.';
 import init from './generator';
 import { addProduct } from "../actionCreators"
 

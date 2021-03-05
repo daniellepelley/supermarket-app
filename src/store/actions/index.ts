@@ -5,6 +5,13 @@ export interface IAddProductAction extends AnyAction {
     productCode: string
 }
 
-type Action = IAddProductAction
+export interface IRemoveProductAction extends AnyAction {
+    type: "REMOVE_PRODUCT",
+    productCode: string
+}
+
+type Action =
+    IAddProductAction |
+    IRemoveProductAction
 
 export default Action;
