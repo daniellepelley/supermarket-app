@@ -9,4 +9,4 @@ const ShoppingCart = (props: IShoppingCartProps) => {
   return <div>{props.message}</div>
 }
 
-export { ShoppingCart }
+export default ShoppingCart;

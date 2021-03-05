@@ -1,11 +1,41 @@
 import { IState } from "../types/IState";
-import { AnyAction } from "redux";
 import init from "./generator";
+import { AnyAction } from "redux";
+import Action from "../actions";
+import { IBasketItem } from "../types/IBasketItem";
 
-export default (state: IState = init(), action: AnyAction) => {
+const addItem = (productCode: string, quantity: number, items: IBasketItem[]) : IBasketItem[] => {
+    const existingItem = items.filter(item => item.productCode === productCode)[0];
+    if (existingItem) {
+        const updatedItem = {
+            ...existingItem,
+            quantity: existingItem.quantity + quantity
+        }
+        return items.map(item => 
+            item.productCode === updatedItem.productCode ? updatedItem : item
+        )
+    }
+    return [
+        ...items,
+        {
+            productCode,
+            quantity
+        }
+    ];
+}
+
+
+export default (state: IState = init(), anyAction: AnyAction) : IState => {
+  const action = anyAction as Action;
+  
   switch (action.type) {
-    case "BACK":
-      return state;
+    case "ADD_PRODUCT":
+        return {
+          ...state,
+          basket: {
+              items: addItem(action.productCode, action.quantity, state.basket.items)
+          }
+      }
     default:
       return state;
   }
