@@ -2,7 +2,7 @@ import * as React from "react";
 import { IBasketProduct } from "../../store/types/IBasketProduct";
 import { IProduct } from "../../store/types/IProduct";
 import BasketItem from "../basket/BasketItem";
-import { mapBasketItems } from "./basketItemsMapper";
+import { mapBasketItems } from "../../mappers/basketItemsMapper";
 
 type IBasketItemsProps = {
   products: IProduct[],

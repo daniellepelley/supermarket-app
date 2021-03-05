@@ -4,7 +4,7 @@ import ShoppingCartContainer from './features/shopping-cart/ShoppingCartContaine
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <ShoppingCartContainer/>
     </div>
   );
