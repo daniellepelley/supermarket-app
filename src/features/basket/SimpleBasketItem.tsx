@@ -20,7 +20,7 @@ const SimpleBasketItem = (props: ISimpleBasketItemProps) => {
     <div className="basket-item-price">
       {toCurrency(item.price)}
     </div>
-    <div className="basket-item-remove" onClick={onRemove}>
+    <div className="basket-item-remove" title="Remove" onClick={onRemove}>
       x
     </div>
   </div>

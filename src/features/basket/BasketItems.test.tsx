@@ -13,7 +13,7 @@ const defaultProps = {
   onRemove: onRemoveProduct
 };
 
-test('renders a collection of products', () => {
+test('renders a collection of basket items', () => {
   render(<BasketItem {...defaultProps} />);
   const titleElement = screen.getByText(defaultProps.item.title);
   expect(titleElement).toBeInTheDocument();
@@ -22,7 +22,7 @@ test('renders a collection of products', () => {
   expect(priceElement).toBeInTheDocument();
 });
 
-test('clicking on a product will add it to the basket', () => {
+test('clicking on a basket item will remove it from the basket', () => {
   render(<BasketItem {...defaultProps} />);
 
   const removeElement = screen.getByText("x");

@@ -11,15 +11,24 @@ const ProductItem = (props: IProductItemProps) => {
   const {
     price,
     title,
-    code
+    unitsToAdd,
+    unitTitle
   } = props.product;
 
-  return <div placeholder="fd" className="product-item" onClick={props.onAdd}>
+  const productTitle = unitTitle
+    ? `${title} (${unitsToAdd.toFixed(3)} ${unitTitle})`
+    : title;
+
+  const productPrice = unitTitle
+    ? `@ ${price} per ${unitTitle}`
+    : toCurrency(price);
+
+  return <div className="product-item" onClick={props.onAdd}>
     <div className="product-title">
-      {title}
+      {productTitle}
     </div>
     <div className="product-price">
-      {toCurrency(price)}
+      {productPrice}
     </div>
     <div className="product-add">
       Add to basket

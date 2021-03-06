@@ -24,17 +24,18 @@ const ShoppingCart = (props: IShoppingCartProps) => {
     total: mapTotal(basket.items, products, basket.discounts)
   }
 
-  return <div>
+  return <div className="shopping-cart">
     <ProductList products={products} onAddProduct={onAddProduct} />
     <div className="receipt-panel">
-    <BasketItems basketProducts={basket.items} products={products} onRemoveProduct={onRemoveProduct} />
-    <span>-----</span>
-    <Total title="Sub Total" value={totals.subTotal} />
-    <Discounts discounts={basket.discounts} />
-    <span>-----</span>
-    <Total title="Total Savings" value={totals.savings * -1} />
-    <span>---------------</span>
-    <Total title="Total" value={totals.total} />
+      <BasketItems basketProducts={basket.items} products={products} onRemoveProduct={onRemoveProduct} />
+      <span>-----</span>
+      <Total title="Sub Total" value={totals.subTotal} />
+      <span>-----</span>
+      <Discounts discounts={basket.discounts} />
+      <span>-----</span>
+      <Total title="Total Savings" value={totals.savings * -1} />
+      <span>---------------</span>
+      <Total title="Total" value={totals.total} />
     </div>
   </div>
 }

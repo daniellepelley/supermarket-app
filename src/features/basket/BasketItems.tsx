@@ -16,7 +16,7 @@ const BasketItems = (props: IBasketItemsProps) => {
 
   const onRemove = (productCode: string) => {
     const quantity = products.filter(product => product.code === productCode)[0].unitsToAdd;
-    props.onRemoveProduct(productCode, quantity);    
+    onRemoveProduct(productCode, quantity);    
   }
 
   const items = mapBasketItems(basketProducts, products);

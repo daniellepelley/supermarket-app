@@ -1,5 +1,4 @@
 import * as React from "react";
-import toCurrency from "../../mappers/toCurrency";
 import { IBasketItem } from "../../store/types/IBasketItem";
 import SimpleBasketItem from "./SimpleBasketItem";
 import UnitBasketItem from "./UnitBasketItem";

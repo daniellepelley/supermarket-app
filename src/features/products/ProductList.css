@@ -12,10 +12,14 @@
     padding: 10px;
     background-color: whitesmoke;
     text-align: center;
+    cursor: pointer;
 }
 
 .product-add {
-    display: none;    
+    display: none;
+    font-size: 12px;
+    color:darkred;
+    margin-top: 5px;   
 }
 
 .product-item:hover {
