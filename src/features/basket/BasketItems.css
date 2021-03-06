@@ -1,0 +1,21 @@
+.basket-item {
+}
+
+.basket-item-title {
+    display: inline-block;
+    width: 250px;
+}
+
+.basket-item-price {
+    display: inline-block;
+    width: 100px;
+}
+
+.basket-item-remove {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+

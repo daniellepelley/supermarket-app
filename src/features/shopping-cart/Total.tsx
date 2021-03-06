@@ -1,14 +1,21 @@
 import * as React from "react";
+import toCurrency from "../../mappers/toCurrency";
 
 type ITotalProps = {
+  title: string;
   value: number;
 }
 
 const Total = (props: ITotalProps) => {
-  const { value } = props;
+  const { title, value } = props;
 
   return <div>
-    {`£${value.toFixed(2)}`}
+    <div className="total-title">
+      {title}
+    </div>
+    <div className="total-value">
+      {toCurrency(value)}
+    </div>
   </div>
 }
 

@@ -1,0 +1,10 @@
+.discount-title {
+    display: inline-block;
+    width: 250px;
+}
+
+.discount-value {
+    display: inline-block;
+    width: 100px;
+}
+

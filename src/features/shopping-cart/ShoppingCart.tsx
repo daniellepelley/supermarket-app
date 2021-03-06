@@ -6,12 +6,13 @@ import BasketItems from "../basket/BasketItems";
 import Discounts from "../discounts/Discounts";
 import Total from "./Total";
 import { mapTotalSavings, mapSubTotal, mapTotal } from "../../mappers/basketItemsMapper";
+import "./ShoppingCart.css";
 
 type IShoppingCartProps = {
   basket: IBasket,
   products: IProduct[],
-  onAddProduct: (productCode: string) => void;
-  onRemoveProduct: (productCode: string) => void;
+  onAddProduct: (productCode: string, quantity: number) => void;
+  onRemoveProduct: (productCode: string, quantity: number) => void;
 }
 
 const ShoppingCart = (props: IShoppingCartProps) => {
@@ -25,11 +26,16 @@ const ShoppingCart = (props: IShoppingCartProps) => {
 
   return <div>
     <ProductList products={products} onAddProduct={onAddProduct} />
+    <div className="receipt-panel">
     <BasketItems basketProducts={basket.items} products={products} onRemoveProduct={onRemoveProduct} />
-    <Total value={totals.subTotal} />
+    <span>-----</span>
+    <Total title="Sub Total" value={totals.subTotal} />
     <Discounts discounts={basket.discounts} />
-    <Total value={totals.savings} />
-    <Total value={totals.total} />
+    <span>-----</span>
+    <Total title="Total Savings" value={totals.savings * -1} />
+    <span>---------------</span>
+    <Total title="Total" value={totals.total} />
+    </div>
   </div>
 }
 

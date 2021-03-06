@@ -7,7 +7,7 @@ const defaultProps = {
   item: {
     id: "CODE-1",
     title: "Some Product",
-    price: "£0.20",
+    price: 0.20,
     productCode: "CODE"
   },
   onRemove: onRemoveProduct
@@ -18,7 +18,7 @@ test('renders a collection of products', () => {
   const titleElement = screen.getByText(defaultProps.item.title);
   expect(titleElement).toBeInTheDocument();
 
-  const priceElement = screen.getByText(defaultProps.item.price);
+  const priceElement = screen.getByText("0.20");
   expect(priceElement).toBeInTheDocument();
 });
 

@@ -7,17 +7,20 @@ const create = (): IState => ({
       code: staticNames.FACE_MASK,
       title: "Face Mask",
       price: 2.5,
+      unitsToAdd: 1
     },
     {
       code: staticNames.TOILET_ROLL,
       title: "Toilet Roll",
       price: 0.65,
+      unitsToAdd: 1
     },
     {
       code: staticNames.HAND_SANITIZER,
       title: "Hand Sanitizer",
       price: 19.99,
       unitTitle: "l",
+      unitsToAdd: 0.175
     },
   ],
   discounts: [

@@ -3,4 +3,5 @@ export interface IProduct {
     title: string;
     price: number;
     unitTitle?: string;
+    unitsToAdd: number;
 }

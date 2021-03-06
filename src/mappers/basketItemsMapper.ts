@@ -2,27 +2,40 @@ import { IAppliedDiscount } from "../store/types/IAppliedDiscount";
 import { IBasketItem } from "../store/types/IBasketItem";
 import { IBasketProduct } from "../store/types/IBasketProduct";
 import { IProduct } from "../store/types/IProduct";
+import toCurrency from "./toCurrency";
 
 const mapBasketItems = (
   items: IBasketProduct[],
   products: IProduct[]
 ): IBasketItem[] => {
   return items
-    .map((item) => {
+    .map((item) : IBasketItem[] => {
       const product = products.filter(
         (product) => product.code === item.productCode
       )[0];
-      return new Array(item.quantity).fill("").map((_, i) => {
-        return {
-          id: `${product.code}-${i}`,
-          title: product.title,
-          price: `${product.price}`,
-          productCode: product.code,
-        };
-      });
+      if (!product.unitTitle) {
+        return new Array(item.quantity).fill("").map((_, i) => {
+          return {
+            id: `${product.code}-${i}`,
+            title: product.title,
+            price: product.price,
+            productCode: product.code,
+          };
+        });
+      } else {
+        return [
+          {
+            id: `${product.code}`,
+            title: product.title,
+            price: product.price * item.quantity,
+            productCode: product.code,
+            unitsBreakdown: `${item.quantity.toFixed(3)} ${product.unitTitle} @ £${toCurrency(product.price)}/${product.unitTitle}`
+          }
+        ];
+      }
     })
-    .reduce((a, b) => {
-      return a.concat(b);
+    .reduce((items1: IBasketItem[], items2:IBasketItem[]) => {
+      return items1.concat(items2);
     }, []) as IBasketItem[];
 };
 
@@ -34,7 +47,7 @@ const mapSubTotal = (items: IBasketProduct[], products: IProduct[]): number => {
       )[0];
       return product.price * item.quantity;
     })
-    .reduce((a, b) => a + b, 0);
+    .reduce((number1: number, number2: number) => number1 + number2, 0);
 };
 
 const mapTotalSavings = (discounts: IAppliedDiscount[]) => {
@@ -43,7 +56,11 @@ const mapTotalSavings = (discounts: IAppliedDiscount[]) => {
     .reduce((discount: number, total: number) => total + discount, 0);
 };
 
-const mapTotal = (items: IBasketProduct[], products: IProduct[], discounts: IAppliedDiscount[]) => {
+const mapTotal = (
+  items: IBasketProduct[],
+  products: IProduct[],
+  discounts: IAppliedDiscount[]
+) => {
   return mapSubTotal(items, products) - mapTotalSavings(discounts);
 };
 

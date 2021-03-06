@@ -1,0 +1,27 @@
+.product-list {
+    position: absolute;
+    left: 0;
+    border: 1px gainsboro solid;
+    margin: 10px;
+    padding: 10px;
+}
+
+.product-item {
+    border: 1px gray solid;
+    margin: 10px;
+    padding: 10px;
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+.product-add {
+    display: none;    
+}
+
+.product-item:hover {
+    background-color: gainsboro;
+}
+
+.product-item:hover .product-add {
+    display: block;
+}

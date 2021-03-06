@@ -41,7 +41,7 @@ const removeItem = (
     (item) => item.productCode === productCode
   )[0];
   if (existingItem) {
-    if (existingItem.quantity === 1) {
+    if (existingItem.quantity - quantity < 0.001) {
       return items.filter((item) => item.productCode !== productCode);
     }
 

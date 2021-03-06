@@ -1,0 +1,19 @@
+.receipt-panel {
+    position: absolute;
+    left: 220px;
+    background-color: whitesmoke;
+    padding: 5px;
+    width: 400px;
+    margin: 10px;
+    border: 1px gainsboro solid;
+}
+.total-title {
+    display: inline-block;
+    width: 250px;
+}
+
+.total-value {
+    display: inline-block;
+    width: 100px;
+}
+

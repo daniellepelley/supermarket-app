@@ -1,5 +1,8 @@
 import * as React from "react";
+import toCurrency from "../../mappers/toCurrency";
 import { IBasketItem } from "../../store/types/IBasketItem";
+import SimpleBasketItem from "./SimpleBasketItem";
+import UnitBasketItem from "./UnitBasketItem";
 
 type IBasketItemProps = {
   item: IBasketItem;
@@ -11,18 +14,10 @@ const BasketItem = (props: IBasketItemProps) => {
     item,
     onRemove
   } = props;
+  return item.unitsBreakdown
+  ? <UnitBasketItem item={item} onRemove={onRemove} />
+  : <SimpleBasketItem item={item} onRemove={onRemove} />
 
-  return <div className="basket-item">
-    <div className="basket-item-title">
-      {item.title}
-    </div>
-    <div className="basket-item-price">
-      {item.price}
-    </div>
-    <div className="basket-item-remove" onClick={onRemove}>
-      x
-    </div>
-  </div>
 }
 
 export default BasketItem;

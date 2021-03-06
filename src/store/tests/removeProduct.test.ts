@@ -76,3 +76,24 @@ test("remove a product from basket when there are several products", () => {
   expect(newState.basket.items[0].productCode).toEqual(staticNames.FACE_MASK);
   expect(newState.basket.items[0].quantity).toEqual(1);
 });
+
+test("remove a product with a unitTitle", () => {
+  const state: IState = {
+    ...init(),
+    basket: {
+      items: [
+        {
+          productCode: staticNames.HAND_SANITIZER,
+          quantity: 0.175,
+        },
+      ],
+      discounts: [],
+    },
+  };
+
+  const action = removeProduct(staticNames.HAND_SANITIZER, 0.175);
+
+  const newState = reducer(state, action);
+
+  expect(newState.basket.items.length).toEqual(0);
+});

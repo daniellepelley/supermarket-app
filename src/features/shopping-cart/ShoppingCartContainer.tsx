@@ -10,8 +10,8 @@ const mapStateToProps = (state: IState, ownProps: any) => ({
  
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    onAddProduct: (productCode: string) => dispatch(addProduct(productCode, 1)),
-    onRemoveProduct: (productCode: string) => dispatch(removeProduct(productCode, 1))
+    onAddProduct: (productCode: string, quantity: number) => dispatch(addProduct(productCode, quantity)),
+    onRemoveProduct: (productCode: string, quantity: number) => dispatch(removeProduct(productCode, quantity))
   }
 };
 
